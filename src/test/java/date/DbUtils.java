@@ -55,7 +55,5 @@ public class DbUtils {
             runner.update(conn, deleteOrder);
             runner.update(conn, deletePayment);
         }
-
     }
-
 }

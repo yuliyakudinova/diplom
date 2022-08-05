@@ -263,5 +263,23 @@ public class PaymentPageTest {
         paymentPage.getFillCardDetails(card);
         paymentPage.checkEmptyField();
     }
+    @Test
+    void shouldPaymentEmptyAllField() {
+        var startPage = new StartingPage();
+        CardInfo card = new CardInfo(
+                null, null, null, null, null);
+        var paymentPage = startPage.payment();
+        paymentPage.getFillCardDetails(card);
+        paymentPage.checkAllFieldsAreRequired();
+    }
+    @Test
+    void shouldPaymentCardInvalidYear() {
+        var startPage = new StartingPage();
+        CardInfo card = new CardInfo(
+                getFirstCardNumber(), getMonthCard(1), getInvalidYearCard(), getOwnerCard(), getCvc());
+        var paymentPage = startPage.payment();
+        paymentPage.getFillCardDetails(card);
+        paymentPage.checkInvalidCardValidityPeriod();
+    }
 
 }
